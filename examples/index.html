@@ -1,0 +1,27 @@
+<!doctype html>
+<html ng-app="testBingMap">
+  <head>
+    <title>angularjs TODO list</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+
+
+    <script charset="UTF-8" type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
+    <script src="../app.js"></script>
+    <script src="../directives.js"></script>
+    <script src="../services.js"></script>
+
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div class="mainCont"  ng-controller="MainCtrl">
+      <h1 >{{title}}</h1>
+      
+	<map center="{{center}}"  >
+		
+
+	</map>
+
+    </div>
+  </body>
+</html>
