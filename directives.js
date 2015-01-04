@@ -2,6 +2,7 @@
 ngBMap.directive('map', [ function ($compile){
 	return {
       restrict: 'E',
+      
 	  controller: ['$scope', 'bingCredentials', function($scope, bingCredentials) {
 		//this.markers = [];
 		this.markers = $scope.markers = [];
@@ -53,6 +54,8 @@ ngBMap.directive('map', [ function ($compile){
 	    			e.handled = true;
 	    			return true;
 				});
+			
+			$(this.mapHtmlEl).append('<span ng-transclude></span>')
 			this.mapHtmlEl = map_canvas;
 		}
 		this.setCenter = function(position){
@@ -68,18 +71,14 @@ ngBMap.directive('map', [ function ($compile){
 	  },
       link: function(scope, element, attrs, ctrl) {
 		console.log('map')
-		//var filtered = new parser.filter(attrs);
-        //var markerOptions = parser.getOptions(filtered);
          scope.$watch('center', function(center) {
          	console.log('center: '+center)
          	if(center){
         		ctrl.setCenter(center)	
          	}
       	  }, false);
-		//var markerEvents = parser.getEvents(scope, filtered);
-		
 		ctrl.initializeMap(scope, element, attrs)
-		element.html(ctrl.mapHtmlEl)	
+		element.append(ctrl.mapHtmlEl)	
 	  }
 	}	
 	
@@ -93,7 +92,6 @@ ngBMap.directive('marker', [ function ($compile){
       link: function(scope, element, attrs, mapController) {
 		  console.log('marker init')
 		  	var getMarker = function() {
-
 				var lat = attrs.lat
 				var lng =  attrs.lng;
 				var text = attrs.text;
@@ -126,20 +124,15 @@ ngBMap.directive('marker', [ function ($compile){
                         console.log('funcName: '+funcName	)
                         console.log('mapController: '+mapController)
                         mapController.exeFunc(funcName, this, args)
-                        //$scope.$parent[funcName].apply(this, args)
-                        //mapController.scope[funcName].apply(mapController, args);
-                        //mapController.scope[funcName].apply(this, args);
                     }
 					Microsoft.Maps.Events.addHandler(_marker, 'click',markerListener);
 				}
-				//map.entities.push(_marker);
 				var marker =  _marker;	
 				return marker;
 			}//end getMarker
 
 			var marker = getMarker();
 			mapController.markers.push(marker);
-		  //marker1Ctrl.markers.push('cane');
 	  }
 	}	
 	
