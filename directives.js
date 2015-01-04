@@ -116,6 +116,7 @@ ngBMap.directive('marker', [ function ($compile){
 					width 	   : width,
 					height 	   : _height
 				});
+				if(attrs.onClick){
 					var matches = attrs.onClick.match(/([^\(]+)\(([^\)]*)\)/);
                     var funcName = matches[1];
                     //var argsStr = matches[2].replace(/event[ ,]*/,'');    //remove string 'event'
@@ -129,7 +130,8 @@ ngBMap.directive('marker', [ function ($compile){
                         //mapController.scope[funcName].apply(mapController, args);
                         //mapController.scope[funcName].apply(this, args);
                     }
-				Microsoft.Maps.Events.addHandler(_marker, 'click',markerListener);
+					Microsoft.Maps.Events.addHandler(_marker, 'click',markerListener);
+				}
 				//map.entities.push(_marker);
 				var marker =  _marker;	
 				return marker;
