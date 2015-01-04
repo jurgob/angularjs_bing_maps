@@ -18,8 +18,8 @@
       <h1 >{{title}}</h1>
       
 	<map center="{{center}}"  >
-		
-
+		  <marker  lat="{{markers2[0][0]}}" lng="{{markers2[0][1]}}" text="txt"  type-name="blueMarker"  width="10" height="10"  ></marker>
+      <marker ng-repeat="marker in markers"   lat="{{marker[0]}}" lng="{{marker[1]}}" text="txt"  type-name="blueMarker"  width="10" height="10"  ></marker>
 	</map>
 
     </div>
